@@ -375,8 +375,9 @@ var selecionarSessao = function (valor, array) {
     });
 };
 var cadastro = function (valor, array, callback) {
-    conn.app_pertube.query("\n        CALL Cadastrar(\"" + array.nome + "\",\n            \"" + array.sobrenome + "\",\n            \"" + array.email + "\",\n            \"" + array.celular + "\",\n            \"" + array.dtnascimento + "\",\n            \"" + array.sexo + "\",\n            \"" + array.senha + "\")", function (err, result0, _fields) {
+    conn.app_pertube.query("\n        CALL Cadastrar(\n            \"" + array.userName + "\",\n            \"" + array.nome + "\",\n            \"" + array.sobrenome + "\",\n            \"" + array.email + "\",\n            \"" + array.celular + "\",\n            \"" + array.dtnascimento + "\",\n            \"" + array.sexo + "\",\n            \"" + array.senha + "\")", function (err, result0, _fields) {
         try {
+            console.log(array);
             if (result0[0][0].error === 0) {
                 callback('error', 'Username já existe', '0');
             }
@@ -413,12 +414,12 @@ var cadastro = function (valor, array, callback) {
                     });
                 }
                 catch (error) {
-                    callback('error', 'Não foi possível efetur o login.');
+                    callback('error', 'Não foi possível efetuar o login.');
                 }
             }
         }
         catch (error) {
-            callback('error', 'Não foi possível efetur o login.');
+            callback('error', 'Não foi possível efetuar o login.');
         }
     });
 };

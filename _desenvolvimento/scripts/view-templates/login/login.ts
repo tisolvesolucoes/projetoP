@@ -12,7 +12,7 @@ define(['app'], function (app) {
                     var re = new RegExp(regexp);
                     return this.optional(element) || re.test(value);
                 },
-                "Please check your input."
+                "Preenche o campo corretamente."
             );
 
             $("#frmLogin").validate({
@@ -65,6 +65,9 @@ define(['app'], function (app) {
 
             $("#frmCadastrar").validate({
                 rules: {
+                    userName: {
+                        required : true
+                    },
                     nome: {
                         required : true
                     },
@@ -84,7 +87,7 @@ define(['app'], function (app) {
                     },
                     senha_cad: {
                         required : true,
-                        regex: /^[A-Za-z0-9 ]{5,8}$/
+                        regex: /^[A-Za-z0-9 ]{5,16}$/
                     },
                     dia: {
                         required : true
@@ -100,6 +103,9 @@ define(['app'], function (app) {
                     },                   
                 },
                 messages: {
+                    userNome: {
+                        required: "Preencha seu Login/Nome Usúario sem acentos"
+                    },
                     nome: {
                         required: "Preencha com seu nome"
                     },
@@ -134,7 +140,7 @@ define(['app'], function (app) {
                     },
                 },
                 submitHandler: function (form) {
-
+                    let frm_userName = document.forms["frmCadastrar"]["userName"].value;
                     let frm_nome = document.forms["frmCadastrar"]["nome"].value;
                     let frm_sobrenome = document.forms["frmCadastrar"]["sobrenome"].value;
                     let frm_celular = document.forms["frmCadastrar"]["celular"].value; 
@@ -158,6 +164,7 @@ define(['app'], function (app) {
                     else
                     {
                         client.emit('cadastrar', { 
+                            userName: frm_userName,
                             nome: frm_nome,
                             sobrenome: frm_sobrenome,
                             email: frm_email_cad,

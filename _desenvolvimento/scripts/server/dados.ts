@@ -509,7 +509,9 @@ let selecionarSessao = function(valor, array) {
 **********************************************/
 let cadastro = function(valor, array, callback){
     conn.app_pertube.query(`
-        CALL Cadastrar("` + array.nome + `",
+        CALL Cadastrar(
+            "` + array.userName + `",
+            "` + array.nome + `",
             "` + array.sobrenome + `",
             "` + array.email + `",
             "` + array.celular + `",
@@ -517,6 +519,7 @@ let cadastro = function(valor, array, callback){
             "` + array.sexo + `",
             "` + array.senha + `")`, function (err, result0, _fields) {
             try{ 
+                console.log(array);
                     if(result0[0][0].error === 0){
                         callback('error', 'Username já existe', '0');
                     }
@@ -550,13 +553,14 @@ let cadastro = function(valor, array, callback){
                         }
                         catch (error)
                         {
-                            callback('error', 'Não foi possível efetur o login.');
+                            callback('error', 'Não foi possível efetuar o login.');
+
                         } 
                     } 
             }
             catch (error)
             {
-                callback('error', 'Não foi possível efetur o login.');
+                callback('error', 'Não foi possível efetuar o login.');
             }         
     }); }
 /**********************************************

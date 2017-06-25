@@ -1,3 +1,27 @@
+<script>
+function removerAcentos( newStringComAcento ) {
+  var string = newStringComAcento;
+	var mapaAcentosHex 	= {
+		a : /[\xE0-\xE6]/g,
+		e : /[\xE8-\xEB]/g,
+		i : /[\xEC-\xEF]/g,
+		o : /[\xF2-\xF6]/g,
+		u : /[\xF9-\xFC]/g,
+		c : /\xE7/g,
+		n : /\xF1/g,
+        '-' : /\s/g,
+        
+	};
+
+	for ( var letra in mapaAcentosHex ) {
+		var expressaoRegular = mapaAcentosHex[letra];
+		string = string.replace( expressaoRegular, letra );
+	}
+
+	console.log(string);
+    $('#userName').val(string);
+}
+</script>
 <section>
     <div class="content-middle">
         <form id="frmLogin">
@@ -35,14 +59,20 @@
         
 
         <form id="frmCadastrar" autocomplete="off">
+  
+            <div class="form-group withou-icon">
+                <label for="username">Login/Nome Usuario</label>
+                <input type="text" id="userName" onBlur="javascript:removerAcentos(this.value);"  onkeyup="javascript:removerAcentos(this.value);" name="userName" placeholder="userName"  maxlength="30" >
+            </div>
+
             <div class="form-group withou-icon">
                 <label for="nome">Nome</label>
-                <input type="text" id="nome" name="nome" placeholder="nome">
+                <input type="text" id="nome" name="nome" placeholder="nome" maxlength="30">
             </div>
 
             <div class="form-group withou-icon">
                 <label for="sobrenome">Sobrenome</label>
-                <input type="text" id="sobrenome" name="sobrenome" placeholder="sobrenome">
+                <input type="text" id="sobrenome" name="sobrenome" placeholder="sobrenome" maxlength="30">
             </div>
             
             <div class="form-group withou-icon">
@@ -52,17 +82,17 @@
 
             <div class="form-group withou-icon">
                 <label for="email">E-mail</label>
-                <input type="email" id="email_cad" name="email_cad" placeholder="email">
+                <input type="email" id="email_cad" name="email_cad" placeholder="email" maxlength="50">
             </div>
 
             <div class="form-group withou-icon">
                 <label for="confirmacaoEmail">Confirmação E-mail</label>
-                <input type="email" id="confirmacaoEmail" name="confirmacaoEmail" onPaste="return false" placeholder="confirmacaoEmail" >
+                <input type="email" id="confirmacaoEmail" name="confirmacaoEmail" maxlength="50" onPaste="return false" placeholder="confirmacaoEmail" >
             </div>
 
             <div class="form-group withou-icon">
                 <label for="senha">Senha</label>
-                <input type="password" id="senha_cad" name="senha_cad" placeholder="senha">
+                <input type="password" id="senha_cad" name="senha_cad" placeholder="senha" maxlength="16">
             </div>
 
             <div class="form-group">

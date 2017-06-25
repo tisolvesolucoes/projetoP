@@ -15,7 +15,6 @@ define(['app'], function (app) {
                     dadosPessoais += "<label> Nome";
                     dadosPessoais += "<input type='text' name='nome' id='nome' value='" + message[0][0].Nome + "' />";
                     dadosPessoais += "</label>";
-                    dadosPessoais;
                     dadosPessoais += "<label> Sobrenome";
                     dadosPessoais += "<input type='text' name='sobrenome' id='sobrenome' value='" + message[0][0].Sobrenome + "' />";
                     dadosPessoais += "</label>";
